@@ -14,10 +14,12 @@ import {
     Stop
 
 } from '@material-ui/icons'
+import {table1, table2} from '../db/table'
 
 import OptionBar from '../Components/OptionBar'
 import FatBadge from '../Components/FatBadge'
 import ThinBar from '../Components/ThinBar'
+import DataTable from '../Components/DataTable'
 
 const data = [
     {
@@ -140,6 +142,29 @@ const Overall = () => {
                             ))
                         }
                     </Grid>
+                </Grid>
+            </Grid>
+            <Grid
+                container
+                spacing={2}
+                justify='center'
+                alignItems='center'
+            >
+                <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={6}
+                >
+                    <DataTable data={table1} />
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={6}
+                >
+                    <DataTable data={table2} />
                 </Grid>
             </Grid>
         </>
