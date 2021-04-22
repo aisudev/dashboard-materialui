@@ -3,23 +3,24 @@ import clsx from 'clsx'
 import {
     AppBar, Drawer, IconButton, TextField,
     Toolbar, Typography, MenuItem, FormControl,
-    List, ListItem, ListItemText, Divider
+    List, ListItem, ListItemText, Divider, ListSubheader
 } from '@material-ui/core'
 import { Menu, Close } from '@material-ui/icons'
 import { useStyles } from './Styles'
 import { context } from '../../utils/Provider'
+import { useHistory } from 'react-router-dom'
 
 const Navbar = ({ children }) => {
 
     const { open, handleOpen } = useContext(context)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const classes = useStyles()
+    const history = useHistory()
 
-    
-    
 
-    React.useEffect(()=>{
-        window.addEventListener("resize", function() {
+
+    React.useEffect(() => {
+        window.addEventListener("resize", function () {
             setWindowWidth(window.innerWidth)
         });
     }, [windowWidth])
@@ -44,13 +45,13 @@ const Navbar = ({ children }) => {
                     >
                         Dashboard
                     </Typography>
-                    <OptionBar classes={classes.optionBar}/>
+                    <OptionBar classes={classes.optionBar} />
                 </Toolbar>
             </AppBar>
             <Drawer
                 className={classes.drawer}
-                anchor={windowWidth<1200?'top':'left'}
-                variant={windowWidth<1200?'temporary':'persistent'}
+                anchor={windowWidth < 1200 ? 'top' : 'left'}
+                variant={windowWidth < 1200 ? 'temporary' : 'persistent'}
                 classes={{
                     paper: classes.drawerPaper
                 }}
@@ -63,9 +64,36 @@ const Navbar = ({ children }) => {
                 </div>
                 <Divider />
                 <OptionBar classes={classes.optionBarMobile} />
-                <List>
+                <Divider />
+                <List
+                    subheader={
+                        <ListSubheader component="div" >
+                            Progress
+                        </ListSubheader>
+                    }
+                >
+                    <ListItem 
+                        button
+                    >
+                        <ListItemText 
+                            primary='Overall' 
+                            onClick={()=>{history.push('/')}}
+                        />
+                    </ListItem>
+                </List>
+                <Divider />
+                <List
+                    subheader={
+                        <ListSubheader component="div" >
+                            Management
+                        </ListSubheader>
+                    }
+                >
                     <ListItem button>
-                        <ListItemText primary='Overall' />
+                        <ListItemText 
+                            primary='More' 
+                            onClick={()=>{history.push('/more')}}
+                        />
                     </ListItem>
                 </List>
             </Drawer>
@@ -76,7 +104,7 @@ const Navbar = ({ children }) => {
     )
 }
 
-function OptionBar({classes}) {
+function OptionBar({ classes }) {
     return (
         <FormControl
             className={classes}
