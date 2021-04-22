@@ -16,6 +16,10 @@ const useStyles = makeStyles(theme=>({
     },
     container:{
         width: '100%',
+    },
+    title:{
+        marginTop:10,
+        marginLeft:10
     }
 }))
 
@@ -26,6 +30,7 @@ const DataTable = ({data}) => {
     return (
         <div className={classes.root}>
             <TableContainer component={Paper} className={classes.container}>
+                <h3 className={classes.title}>{data.title}</h3>
                 <Table>
                     <TableHead>
                         <TableRow>

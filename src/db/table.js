@@ -1,4 +1,5 @@
 const table1 = {
+    title:'Return',
     head: [
         'Product',
         'Taken',
@@ -11,6 +12,7 @@ const table1 = {
 }
 
 const table2 = {
+    title:'Broken',
     head: [
         'Product',
         'Broken',
